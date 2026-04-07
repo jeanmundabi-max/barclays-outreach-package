@@ -1,0 +1,2074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barclays Round 2 — Interview Prep | Jean Mundabi Fala</title>
+<style>
+  :root {
+    --bg: #FAFAF9;
+    --card: #FFFFFF;
+    --border: #E8E5E1;
+    --text: #1A1714;
+    --muted: #6B6560;
+    --accent: #00AEEF;
+    --accent-light: #E8F7FD;
+    --result: #059669;
+    --result-light: #ECFDF5;
+    --warn: #D97706;
+    --warn-light: #FFFBEB;
+    --danger: #DC2626;
+    --danger-light: #FEF2F2;
+    --sidebar: #1A1714;
+    --sidebar-text: #A09890;
+    --sidebar-active: #FFFFFF;
+    --nav-width: 240px;
+    --serif: 'Georgia', 'Times New Roman', serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+
+  [data-theme="dark"] {
+    --bg: #111110;
+    --card: #1C1B1A;
+    --border: #2D2B28;
+    --text: #F0EDE8;
+    --muted: #8A8480;
+    --accent-light: #0D2A36;
+    --result-light: #052E1C;
+    --warn-light: #2D1F00;
+    --danger-light: #2D0A0A;
+    --sidebar: #0D0C0B;
+    --sidebar-text: #6B6560;
+    --sidebar-active: #F0EDE8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--nav-width);
+    height: 100vh;
+    background: var(--sidebar);
+    overflow-y: auto;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-header {
+    padding: 24px 20px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .sidebar-logo {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .sidebar-title {
+    font-size: 13px;
+    color: var(--sidebar-active);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .sidebar-subtitle {
+    font-size: 11px;
+    color: var(--sidebar-text);
+    margin-top: 4px;
+  }
+
+  .sidebar-badge {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 2px 8px;
+    background: rgba(0,174,239,0.15);
+    color: var(--accent);
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .sidebar-nav { padding: 12px 0; flex: 1; }
+
+  .nav-section {
+    padding: 16px 20px 4px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sidebar-text);
+  }
+
+  .nav-item {
+    display: block;
+    padding: 8px 20px;
+    font-size: 12px;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+    line-height: 1.3;
+  }
+
+  .nav-item:hover { color: var(--sidebar-active); background: rgba(255,255,255,0.04); }
+  .nav-item.active { color: var(--sidebar-active); border-left-color: var(--accent); background: rgba(0,174,239,0.08); }
+
+  /* ── MAIN ── */
+  .main {
+    margin-left: var(--nav-width);
+    min-height: 100vh;
+  }
+
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .top-bar-info {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .top-bar-info strong { color: var(--text); }
+
+  .top-actions { display: flex; gap: 8px; align-items: center; }
+
+  .btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    transition: all 0.15s;
+    font-family: var(--sans);
+  }
+  .btn:hover { background: var(--border); }
+  .btn-accent { background: var(--accent); color: white; border-color: var(--accent); }
+  .btn-accent:hover { opacity: 0.9; background: var(--accent); }
+
+  /* ── TIMER ── */
+  .timer-bar {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .timer-label { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .timer-display {
+    font-size: 22px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+    min-width: 64px;
+  }
+
+  .timer-display.warn { color: var(--warn); }
+  .timer-display.danger { color: var(--danger); }
+
+  .timer-presets { display: flex; gap: 6px; }
+
+  .timer-btn {
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--muted);
+    transition: all 0.15s;
+    font-family: var(--sans);
+  }
+  .timer-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .timer-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+  .timer-controls { display: flex; gap: 6px; }
+
+  /* ── CONTENT ── */
+  .content { padding: 48px 40px; max-width: 820px; }
+
+  /* ── SECTION HEADER ── */
+  .section-label {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: normal;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+
+  .section-desc {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    max-width: 560px;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: box-shadow 0.15s;
+  }
+
+  .card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+
+  .card-header {
+    padding: 18px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .card-header-left { display: flex; align-items: flex-start; gap: 12px; flex: 1; }
+
+  .card-badge {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+
+  .badge-blue { background: var(--accent-light); color: var(--accent); }
+  .badge-green { background: var(--result-light); color: var(--result); }
+  .badge-amber { background: var(--warn-light); color: var(--warn); }
+  .badge-red { background: var(--danger-light); color: var(--danger); }
+  .badge-dark { background: rgba(0,0,0,0.06); color: var(--muted); }
+
+  .card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.35;
+  }
+
+  .card-subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .card-toggle {
+    font-size: 16px;
+    color: var(--muted);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .card.open .card-toggle { transform: rotate(180deg); }
+
+  .card-body {
+    display: none;
+    padding: 0 24px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .card.open .card-body { display: block; }
+
+  /* ── TYPOGRAPHY IN CARDS ── */
+  .card-body h2 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: normal;
+    color: var(--text);
+    margin: 20px 0 12px;
+    line-height: 1.3;
+  }
+
+  .card-body h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 18px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .card-body p {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.65;
+  }
+
+  .card-body ul, .card-body ol {
+    padding-left: 20px;
+    margin-bottom: 12px;
+  }
+
+  .card-body li {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.55;
+  }
+
+  .card-body strong { font-weight: 600; color: var(--text); }
+
+  /* ── STAR FORMAT ── */
+  .star-section {
+    margin: 16px 0;
+    padding: 14px 18px;
+    border-radius: 8px;
+    border-left: 3px solid;
+  }
+
+  .star-s { border-color: #94A3B8; background: rgba(148,163,184,0.06); }
+  .star-t { border-color: var(--accent); background: var(--accent-light); }
+  .star-a { border-color: var(--warn); background: var(--warn-light); }
+  .star-r { border-color: var(--result); background: var(--result-light); }
+
+  .star-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .star-s .star-label { color: #64748B; }
+  .star-t .star-label { color: var(--accent); }
+  .star-a .star-label { color: var(--warn); }
+  .star-r .star-label { color: var(--result); }
+
+  .star-section p { margin-bottom: 6px; font-size: 13.5px; }
+  .star-section p:last-child { margin-bottom: 0; }
+
+  /* ── HOOK BOX ── */
+  .hook-box {
+    margin-top: 20px;
+    padding: 14px 18px;
+    background: rgba(0,174,239,0.05);
+    border: 1px solid rgba(0,174,239,0.2);
+    border-radius: 8px;
+  }
+
+  .hook-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .hook-box p { font-size: 13.5px; font-style: italic; margin-bottom: 0; }
+
+  /* ── CALLOUT ── */
+  .callout {
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin: 16px 0;
+    font-size: 13.5px;
+  }
+
+  .callout-blue { background: var(--accent-light); border: 1px solid rgba(0,174,239,0.2); }
+  .callout-amber { background: var(--warn-light); border: 1px solid rgba(217,119,6,0.2); }
+  .callout-green { background: var(--result-light); border: 1px solid rgba(5,150,105,0.2); }
+  .callout-red { background: var(--danger-light); border: 1px solid rgba(220,38,38,0.2); }
+
+  /* ── TABLE ── */
+  .table-wrap { overflow-x: auto; margin: 16px 0; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    text-align: left;
+    padding: 8px 12px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+
+  /* ── PUSHBACK ── */
+  .pushback {
+    margin: 16px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .pushback-q {
+    padding: 12px 16px;
+    background: var(--danger-light);
+    font-size: 13.5px;
+    font-style: italic;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pushback-a {
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--text);
+    background: var(--card);
+  }
+
+  /* ── PROGRESS ── */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: var(--nav-width);
+    right: 0;
+    height: 2px;
+    background: var(--border);
+    z-index: 200;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.2s;
+    width: 0%;
+  }
+
+  /* ── MOBILE ── */
+  .hamburger {
+    display: none;
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 200;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 99;
+  }
+
+  @media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.25s; }
+    .sidebar.mobile-open { transform: translateX(0); }
+    .sidebar-overlay.active { display: block; }
+    .main { margin-left: 0; }
+    .progress-bar { left: 0; }
+    .hamburger { display: flex; }
+    .content { padding: 24px 20px; }
+    .top-bar { padding: 12px 20px; }
+    .timer-bar { padding: 10px 20px; flex-wrap: wrap; }
+    .section-title { font-size: 22px; }
+  }
+
+  @media print {
+    .sidebar, .top-bar, .timer-bar, .hamburger, .progress-bar, .top-actions, .card-toggle { display: none !important; }
+    .main { margin-left: 0; }
+    .card-body { display: block !important; }
+    .content { padding: 0; }
+    .card { break-inside: avoid; border: 1px solid #ddd; margin-bottom: 24px; }
+    body { color: black; }
+  }
+
+  /* ── ROUND 2 BANNER ── */
+  .round-banner {
+    background: linear-gradient(135deg, #00AEEF08 0%, #05966908 100%);
+    border: 1px solid rgba(0,174,239,0.15);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .round-banner-icon { font-size: 28px; }
+
+  .round-banner-text h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .round-banner-text p { font-size: 13px; color: var(--muted); margin: 0; }
+
+  .interview-clock {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+
+  .clock-item {
+    flex: 1;
+    min-width: 110px;
+    padding: 12px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .clock-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    display: block;
+  }
+
+  .clock-label {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<button class="hamburger" id="hamburger">☰</button>
+<div class="sidebar-overlay" id="overlay"></div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">Barclays</div>
+    <div class="sidebar-title">Senior Marketing Insight &amp; Measurement Manager</div>
+    <div class="sidebar-subtitle">8 April 2026 · 12:30pm · Teams</div>
+    <span class="sidebar-badge">Round 2</span>
+  </div>
+  <div class="sidebar-nav">
+
+    <div class="nav-section">Orientation</div>
+    <a class="nav-item active" href="#cheatsheet" onclick="scrollTo('cheatsheet')">Round 2 Cheat Sheet</a>
+    <a class="nav-item" href="#intro" onclick="scrollTo('intro')">Tell Me About Yourself</a>
+    <a class="nav-item" href="#why-barclays" onclick="scrollTo('why-barclays')">Why Barclays?</a>
+    <a class="nav-item" href="#why-role" onclick="scrollTo('why-role')">Why This Role?</a>
+    <a class="nav-item" href="#universal" onclick="scrollTo('universal')">Strengths / Weaknesses</a>
+    <a class="nav-item" href="#anna" onclick="scrollTo('anna')">Anna James Strategy</a>
+    <a class="nav-item" href="#kirsty" onclick="scrollTo('kirsty')">Kirsty Morris Profile</a>
+    <a class="nav-item" href="#lead-overview" onclick="scrollTo('lead-overview')">LEAD Overview</a>
+
+    <div class="nav-section">LEAD Behaviours</div>
+    <a class="nav-item" href="#lead-l" onclick="scrollTo('lead-l')">L — Listen &amp; Authentic</a>
+    <a class="nav-item" href="#lead-e" onclick="scrollTo('lead-e')">E — Energise &amp; Inspire</a>
+    <a class="nav-item" href="#lead-a" onclick="scrollTo('lead-a')">A — Align Across</a>
+    <a class="nav-item" href="#lead-d" onclick="scrollTo('lead-d')">D — Develop Others</a>
+
+    <div class="nav-section">Critical Skills — Round 2</div>
+    <a class="nav-item" href="#cs-risk" onclick="scrollTo('cs-risk')">Risk &amp; Controls</a>
+    <a class="nav-item" href="#cs-change" onclick="scrollTo('cs-change')">Change &amp; Transformation</a>
+    <a class="nav-item" href="#cs-acumen" onclick="scrollTo('cs-acumen')">Business Acumen</a>
+    <a class="nav-item" href="#cs-strategic" onclick="scrollTo('cs-strategic')">Strategic Thinking</a>
+    <a class="nav-item" href="#cs-digital" onclick="scrollTo('cs-digital')">Digital &amp; Technology</a>
+    <a class="nav-item" href="#values" onclick="scrollTo('values')">Values &amp; Mindset</a>
+
+    <div class="nav-section">Technical Skills</div>
+    <a class="nav-item" href="#tech-overview" onclick="scrollTo('tech-overview')">What They Are Testing</a>
+    <a class="nav-item" href="#tech-incrementality" onclick="scrollTo('tech-incrementality')">Incrementality Deep Dive</a>
+    <a class="nav-item" href="#tech-tools" onclick="scrollTo('tech-tools')">Your Tool Stack</a>
+    <a class="nav-item" href="#mom-framework" onclick="scrollTo('mom-framework')">Moments of Progress</a>
+    <a class="nav-item" href="#mom-pushbacks" onclick="scrollTo('mom-pushbacks')">MoP Pushbacks</a>
+
+    <div class="nav-section">Pushbacks &amp; Stress</div>
+    <a class="nav-item" href="#pushbacks" onclick="scrollTo('pushbacks')">Mock Pushbacks</a>
+    <a class="nav-item" href="#stress" onclick="scrollTo('stress')">Stress Tests</a>
+
+    <div class="nav-section">Closing</div>
+    <a class="nav-item" href="#questions" onclick="scrollTo('questions')">Questions to Ask</a>
+    <a class="nav-item" href="#pitch" onclick="scrollTo('pitch')">60-Second Pitch</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="top-bar">
+    <div class="top-bar-info">
+      <strong>Round 2</strong> · Anna James + Kirsty Morris · 30 min · LEAD + Technical Skills
+    </div>
+    <div class="top-actions">
+      <button class="btn" onclick="expandAll()">Expand all</button>
+      <button class="btn" onclick="collapseAll()">Collapse all</button>
+      <button class="btn" id="themeBtn" onclick="toggleTheme()">Dark</button>
+      <button class="btn" onclick="window.print()">Print</button>
+    </div>
+  </div>
+
+  <div class="timer-bar">
+    <span class="timer-label">Practice timer</span>
+    <div class="timer-display" id="timerDisplay">0:00</div>
+    <div class="timer-presets">
+      <button class="timer-btn" onclick="setTimer(60)">60s</button>
+      <button class="timer-btn" onclick="setTimer(90)">90s</button>
+      <button class="timer-btn" onclick="setTimer(120)">2m</button>
+      <button class="timer-btn" onclick="setTimer(180)">3m</button>
+    </div>
+    <div class="timer-controls">
+      <button class="btn" id="timerStartBtn" onclick="startTimer()">Start</button>
+      <button class="btn" onclick="resetTimer()">Reset</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="round-banner">
+      <div class="round-banner-icon">🎯</div>
+      <div class="round-banner-text">
+        <h3>You passed Round 1. Now show them you can lead.</h3>
+        <p>Round 1 proved you have done the work. Round 2 proves you can lead others through it at Barclays scale. Two new things: LEAD behaviours and Technical Skills depth. Two new constraints: 30 minutes and a non-marketing interviewer.</p>
+      </div>
+    </div>
+
+    <div class="interview-clock">
+      <div class="clock-item"><span class="clock-value">30</span><span class="clock-label">Minutes total</span></div>
+      <div class="clock-item"><span class="clock-value">~3</span><span class="clock-label">Questions max</span></div>
+      <div class="clock-item"><span class="clock-value">2</span><span class="clock-label">New interviewers</span></div>
+      <div class="clock-item"><span class="clock-value">12:30</span><span class="clock-label">Start time</span></div>
+    </div>
+
+    <!-- SECTION: ORIENTATION -->
+    <div class="section-label">Orientation</div>
+    <h1 class="section-title">Round 2 — LEAD and Technical Skills</h1>
+    <p class="section-desc">Everything here is new. Anna has heard your Round 1 STARs. Kirsty has never heard any of them. Use backup stories or fresh angles throughout.</p>
+
+    <!-- CHEAT SHEET -->
+    <div class="card open" id="cheatsheet">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-blue">R1</div>
+          <div>
+            <div class="card-title">Round 2 Cheat Sheet</div>
+            <div class="card-subtitle">What is new, what carries over, expected flow</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <div class="callout callout-amber">
+          <strong>30 minutes is tight.</strong> Expect 3 questions maximum. Each answer should be 2 minutes, not 3. Leave room for their questions and yours.
+        </div>
+
+        <h3>What is NEW in Round 2</h3>
+        <ul>
+          <li><strong>LEAD behaviours</strong> — Barclays leadership framework: L, E, A, D. One question, one behaviour.</li>
+          <li><strong>Technical Skills</strong> — Deeper methodological depth. Not just "I have used Tableau." How you designed a specific solution.</li>
+          <li><strong>Kirsty Morris</strong> — New interviewer. Corporate banking background. Will probe leadership and cross-functional credibility.</li>
+        </ul>
+
+        <h3>Expected 30-Minute Flow</h3>
+        <div class="table-wrap">
+          <table>
+            <tr><th>Time</th><th>What Happens</th><th>Your Approach</th></tr>
+            <tr><td>0:00–2:00</td><td>Introductions</td><td>Warm. Brief. Reference that you are looking forward to the next step.</td></tr>
+            <tr><td>2:00–12:00</td><td>LEAD question</td><td>Full STAR. 2 minutes. End with a Barclays hook.</td></tr>
+            <tr><td>12:00–22:00</td><td>Technical Skills question</td><td>Methodological depth. Be specific. Honest about boundaries.</td></tr>
+            <tr><td>22:00–27:00</td><td>One Critical Skills probe (from Round 1)</td><td>New story or new angle. Not the same STAR Anna heard.</td></tr>
+            <tr><td>27:00–30:00</td><td>Your questions</td><td>One question each. Tailored to their background.</td></tr>
+          </table>
+        </div>
+
+        <h3>Stories Anna Already Heard (Do Not Repeat)</h3>
+        <ul>
+          <li>BT Single Source of Truth (Change — primary)</li>
+          <li>BT Dashboard automation (Digital — primary)</li>
+          <li>BT Q2 Budget Reallocation (Business Acumen — primary)</li>
+          <li>Santander Budget Governance (Risk — primary)</li>
+          <li>Santander Brand vs Performance (Strategic Thinking — backup)</li>
+          <li>Manchester contact centre / 11% retention (Mindset)</li>
+          <li>Santander product lead integrity challenge (Values)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- INTRO / WHY BARCLAYS / WHY ROLE -->
+    <div class="card" id="intro">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-blue">↗</div>
+          <div>
+            <div class="card-title">Tell Me About Yourself — Round 2 Version</div>
+            <div class="card-subtitle">90 seconds. Kirsty has not heard this. Anna has. Tighter, more senior framing.</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <div class="callout callout-amber">
+          <strong>Anna has heard the full 2-minute version.</strong> In Round 2, deliver this in 90 seconds. Lead with the system-builder framing, not the career chronology. Kirsty cares about commercial impact and cross-functional leadership — not campaign analytics history.
+        </div>
+
+        <p>"My career has been built around one question: is the marketing investment working, and how do we prove it in a way that actually changes decisions?</p>
+
+        <p>At Santander I was the Marketing Effectiveness Manager — a team of 4, a £30 to £40 million marketing budget, operating under FCA oversight in a regulated bank. I built the governance framework that made econometrics actionable across product teams. Not the model itself — the process that turned model outputs into budget decisions.</p>
+
+        <p>At BT I have been leading SMB Performance and Effectiveness for three and a half years. I built the single source of truth for marketing performance from scratch. One system that Marketing, Finance, and Commercial all use for investment decisions. Weekly trading sessions with all three functions. 15% revenue growth. 25% lead improvement. The system is still running.</p>
+
+        <p>What I build tends to last — because I spend as much time on the people and the alignment as I do on the architecture. That is what I would bring to Barclays."</p>
+
+        <div class="callout callout-green">
+          <strong>Timing:</strong> 75 to 90 seconds. If they want more, they will ask. If Anna says "as you told us before" — just say "exactly, and what I would add for Kirsty's context is..." and land the banking-language hook.
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="why-barclays">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-blue">?</div>
+          <div>
+            <div class="card-title">Why Barclays? — Round 2 Version</div>
+            <div class="card-subtitle">Three reasons. All specific. The satisfaction paradox is still the differentiator.</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <div class="callout callout-amber">
+          <strong>Anna heard this in Round 1.</strong> If she asks again, deliver the same three reasons but add a fourth: "And having spoken with you in the first conversation, I have a clearer picture of the build challenge — which makes me more certain, not less." That signals you listened and it moved you.
+        </div>
+
+        <p>"Three reasons, and they are all specific to this moment at Barclays.</p>
+
+        <p><strong>First, this is a build moment.</strong> VCCP launched Moments of Progress in November as a brand reappraisal platform — a strategic shift from Moneyverse. When the campaign architecture changes this fundamentally, the measurement system has to be rebuilt from the ground up. I want to be the person who builds it.</p>
+
+        <p><strong>Second, financial services is where I operate best.</strong> Two and a half years at Santander managing a £30 to £40 million marketing budget under FCA oversight. I know what it means to measure marketing when Risk and Finance are in the room and every financial promotion has to clear compliance before it runs. Barclays is not new territory for me — it is the same world at significantly bigger scale.</p>
+
+        <p><strong>Third, the measurement problem here is genuinely hard.</strong> Barclays has the highest market share in UK retail banking but satisfaction scores below competitors. That tells me the measurement challenge is not about proving campaigns work. It is about connecting marketing investment to how 20 million customers feel about the bank. That is a harder problem than most organisations face. And it is exactly the kind of problem I find most interesting."</p>
+
+        <div class="hook-box">
+          <div class="hook-label">If Kirsty asks this — add this line</div>
+          <p>"And from a Corporate Banking perspective — the measurement infrastructure I would build here is not just a marketing asset. It is a business intelligence layer that Finance, Risk, and Decision Intelligence would use too. That cross-functional value is part of why this role matters beyond the marketing team."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="why-role">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-blue">?</div>
+          <div>
+            <div class="card-title">Why This Role? — Round 2 Version</div>
+            <div class="card-subtitle">Updated with what you now know from the first conversation.</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <div class="callout callout-amber">
+          <strong>In Round 2, you can reference the first conversation.</strong> "Having spoken with Anna in the first round..." signals you were listening, you processed it, and it sharpened your conviction. Most candidates do not do this. It is a differentiator.
+        </div>
+
+        <p>"Having spoken with Anna in the first round, my answer to this is more specific than it was before — and stronger.</p>
+
+        <p>What I heard confirmed that this is a build role, not a maintenance role. The Decision Intelligence partnership is new. The unified measurement framework does not exist yet. Moments of Progress is a brand reappraisal platform that needs a completely different measurement architecture from Moneyverse. These are not incremental improvements. They are ground-up builds.</p>
+
+        <p>That is where I operate best. At BT, I walked into a team that had been running fragmented reporting for years and built one measurement system that all three functions now use. I did not inherit that system — I built it, aligned people around it, and made it the operating model. Three years later, it is still running.</p>
+
+        <p>This role is asking someone to do the same at Barclays scale. Connect MMM, incrementality testing, attribution, and brand tracking into one system. Build the Decision Intelligence partnership. Give the CMO one story instead of four separate reports.</p>
+
+        <p>I have done this. I know what the hard parts are — and they are not the technical parts. They are the definition wars, the stakeholder alignment, getting three functions to agree on what a word means before you build anything. I have been through all of that. That experience is what makes me confident I can do it here."</p>
+      </div>
+    </div>
+
+    <!-- UNIVERSAL QUESTIONS -->
+    <div class="card" id="universal">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-dark">?</div>
+          <div>
+            <div class="card-title">Universal Questions — Strengths, Weaknesses, Failure, Motivation</div>
+            <div class="card-subtitle">The questions that can come at any point. Have these scripted and ready.</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+
+        <h3>What Are Your Strengths?</h3>
+        <div class="callout callout-blue">
+          <strong>Rule:</strong> Three strengths. Each one backed by a Barclays-specific example or connection. Not generic words like "detail-oriented" or "hard worker."
+        </div>
+        <p>"Three things, all connected.</p>
+        <p><strong>First, I build systems that outlast me.</strong> The measurement architecture I built at BT is still running three years after I designed it. It is still used by Marketing, Finance, and Commercial for every quarterly review. I do not build things for the current quarter. I build things that become the operating model.</p>
+        <p><strong>Second, I align people who do not naturally agree.</strong> At BT, I resolved seven definition mismatches across three functions before writing a single line of code. At Santander, I got Finance and Marketing to share a measurement language that changed how £30 million was allocated. The measurement function only has influence if the people around it trust the numbers. Building that trust is what I am best at.</p>
+        <p><strong>Third, I translate data into decisions.</strong> Not reports. Decisions. Every system I have built exists to change what someone does with money or time the next day. At BT, when a campaign underperformed on Tuesday, the team saw it on Wednesday and moved. That speed is the value, not the dashboard itself."</p>
+
+        <h3>What Is Your Weakness?</h3>
+        <div class="callout callout-amber">
+          <strong>Rule:</strong> Real weakness. Not "I work too hard." Show self-awareness and what you are doing about it. Do not pick something that directly threatens the role requirements.
+        </div>
+        <p>"My instinct is always to get the foundations right before delivering outputs. I want the definitions agreed, the data architecture clean, the methodology validated — before I present anything to stakeholders. That is a strength when you are building a system that needs to last. But it can create tension in environments that want visible progress quickly.</p>
+        <p>I have learned to run both tracks in parallel. At BT, I built a rough version of the dashboard in week three and showed it to the three function leads before it was finished — deliberately. It got them invested in the outcome and gave me early feedback that saved weeks of rebuilding later. I now build quick visible things alongside the longer architecture, rather than waiting until everything is perfect. But it is something I still have to actively manage."</p>
+
+        <h3>Tell Me About a Time You Failed</h3>
+        <p>"At Santander, early in the measurement manager role, I built a cross-channel attribution model that I was confident in technically. I presented it to the Marketing Director without first pressure-testing the outputs with the product teams whose campaigns it would evaluate. One of the product directors challenged a specific finding in the meeting — publicly — and I did not have a good answer in the room. The model was right, but I could not defend it clearly under pressure because I had not anticipated the objection.</p>
+        <p>I learned two things from that. First, always pre-brief the stakeholders who are most likely to push back before presenting in a group. Second, the technical correctness of a model is necessary but not sufficient. You have to anticipate the political landscape around it. I now run a stakeholder alignment session before any major measurement presentation — not to soften the findings, but to make sure I have heard the objections before the room does."</p>
+
+        <h3>Where Do You See Yourself in 5 Years?</h3>
+        <p>"Leading a measurement function at a major bank or financial services organisation. Not just executing a framework someone else designed — owning the measurement strategy and the team that delivers it.</p>
+        <p>The honest answer is that I see this role as the right next step toward that. Barclays is the scale where you build the kind of measurement infrastructure that becomes industry-defining. The Moneyverse econometrics work won an IPA Award. The Moments of Progress framework, done correctly, could do the same. That is the kind of work that builds a career in measurement leadership. Five years from now, I want to be the person who built that."</p>
+
+        <h3>What Motivates You?</h3>
+        <p>"Seeing a decision change because of something I built. Not a dashboard being opened. A budget moving. A campaign being paused. A product team changing their plan because the data said something they did not expect.</p>
+        <p>At BT, when the Q2 budget reallocation happened — when Finance and Commercial agreed to move money mid-year based on live performance data — that was the moment. Not the dashboard. The decision it enabled.</p>
+        <p>At Barclays, the decisions that matter are significant. Marketing budgets at this scale. Brand investment that affects 20 million customers. The measurement system I build here would inform decisions that actually move things. That is what motivates me."</p>
+
+        <h3>What Would Your Colleagues Say About You?</h3>
+        <p>"That I make their meetings more useful. That when I am in the room, the conversation moves from 'what does the data say?' to 'what do we do about it?' — and stays there.</p>
+        <p>I think they would also say I am direct. If a model shows something uncomfortable, I say it. Preferably privately before a group meeting, but clearly. And that I follow through — if I say I will build something, it gets built.</p>
+        <p>I asked a former colleague at BT this question directly before preparing for this interview. She said: 'You turn chaos into a system and then make everyone feel like they built it together.' I think that is about right."</p>
+
+      </div>
+    </div>
+
+    <!-- ANNA STRATEGY -->
+    <div class="card" id="anna">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-dark">A</div>
+          <div>
+            <div class="card-title">Anna James — Round 2 Strategy</div>
+            <div class="card-subtitle">How to handle a repeat interviewer</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <p>Anna was in Round 1. She is back for a reason. Three possibilities:</p>
+        <ol>
+          <li><strong>She is the hiring manager</strong> and her presence both times signals she owns this hire.</li>
+          <li><strong>She wants to probe something deeper</strong> — if any Round 1 answer felt thin, she will return to it.</li>
+          <li><strong>She is assessing consistency</strong> — checking whether the person today matches the person from Round 1.</li>
+        </ol>
+
+        <div class="callout callout-blue">
+          <strong>Key rule:</strong> If she asks "You mentioned X in our last conversation..." — confirm the story and <em>add new detail</em>. Do not simply repeat it. Show that you have been thinking about it since.
+        </div>
+
+        <h3>If She Returns to a Round 1 Story</h3>
+        <p>She will probe: "You described building the BT dashboard. What would you do differently?" or "You mentioned the tiger team — who was the hardest stakeholder to bring on board?"</p>
+        <p><strong>Your answer:</strong> Add depth she did not hear. The hardest stakeholder. The moment you nearly lost them. What the definition mismatches actually were. The specifics that did not fit into the 2-minute STAR.</p>
+      </div>
+    </div>
+
+    <!-- KIRSTY PROFILE -->
+    <div class="card" id="kirsty">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-blue">K</div>
+          <div>
+            <div class="card-title">Kirsty Morris — Profile and Strategy</div>
+            <div class="card-subtitle">Corporate Banking MD. 25+ years at Barclays. Will not ask about Moments of Progress.</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <p><strong>Background:</strong> Managing Director, Barclays Corporate Banking. 25+ years in payments and banking. Started in a contact centre. Rose to senior leadership through commercial and corporate banking roles.</p>
+
+        <div class="callout callout-amber">
+          <strong>She is not a marketing person.</strong> Do not lead with Moments of Progress, IPA Awards, or media planning. She cares about: commercial outcomes, cross-functional credibility, leadership behaviours, and risk management.
+        </div>
+
+        <h3>What Kirsty Will Probe</h3>
+        <ul>
+          <li>Can this person operate in a large, complex bank?</li>
+          <li>Do they understand what leadership means at Barclays?</li>
+          <li>Can they influence people who are not in their team or function?</li>
+          <li>Do they manage risk properly?</li>
+        </ul>
+
+        <h3>How to Win Kirsty Over</h3>
+        <ul>
+          <li>Use banking language: "FCA oversight", "commercial contribution", "risk flags", "stakeholder governance."</li>
+          <li>Reference the scale of what you have managed. £30M to £40M at Santander. £50M+ discussion at BT. These numbers register with a Corporate Banking MD.</li>
+          <li>Do not over-explain marketing methodology. She needs to understand that you make decisions that improve commercial outcomes.</li>
+        </ul>
+
+        <div class="hook-box">
+          <div class="hook-label">The line that will land with Kirsty</div>
+          <p>"I have spent my career making sure marketing is not a black box to the rest of the business. Finance and Commercial need to see the same numbers I see and trust them. That is what I build."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEAD OVERVIEW -->
+    <div class="card" id="lead-overview">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-blue">L</div>
+          <div>
+            <div class="card-title">LEAD — The Framework</div>
+            <div class="card-subtitle">L: Listen. E: Energise. A: Align. D: Develop.</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <div class="table-wrap">
+          <table>
+            <tr><th>Letter</th><th>Behaviour</th><th>What they are really testing</th></tr>
+            <tr><td><strong>L</strong></td><td>Listen and be authentic</td><td>Did you change your approach because of what you heard? Did you tell people difficult truths?</td></tr>
+            <tr><td><strong>E</strong></td><td>Energise and inspire</td><td>Did you bring sceptics with you? Did you create momentum in a team that did not have to follow you?</td></tr>
+            <tr><td><strong>A</strong></td><td>Align across the enterprise</td><td>Can you connect people with competing interests around a single goal? Can you build one truth from four spreadsheets?</td></tr>
+            <tr><td><strong>D</strong></td><td>Develop others</td><td>Can you name a specific person, a specific skill, and a specific outcome? Not "I mentor." Show it.</td></tr>
+          </table>
+        </div>
+        <div class="callout callout-green">
+          <strong>Key rule:</strong> Every LEAD STAR still needs a number in the Result. Not "the team felt better." How did their work improve? What happened differently?
+        </div>
+        <p>They will ask ONE LEAD question. Prepare for all four. You do not know which they will choose.</p>
+      </div>
+    </div>
+
+    <!-- SECTION: LEAD -->
+    <div class="section-label" style="margin-top:40px;">LEAD Behaviours</div>
+    <h2 class="section-title">Listen. Energise. Align. Develop.</h2>
+    <p class="section-desc">One question. One behaviour. Full STAR. They will pick one of the four — be ready for all.</p>
+
+    <!-- L: LISTEN -->
+    <div class="card" id="lead-l">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-blue">L</div>
+          <div>
+            <div class="card-title">Listen and Be Authentic</div>
+            <div class="card-subtitle">STAR: Manchester contact centre · 11% retention improvement</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <p style="color:var(--muted);font-size:13px;"><em>If Anna already probed this story in Round 1, use the Santander Backup card instead.</em></p>
+
+        <p><strong>Predicted questions:</strong><br>
+        "Tell me about a time when listening to others significantly changed your approach."<br>
+        "Describe a situation where you had to be authentic even when the message was difficult."</p>
+
+        <div class="star-section star-s">
+          <div class="star-label">Situation</div>
+          <p>At BT/EE, the SMB marketing team had been running CRM retention campaigns for 18 months with flat results. The working assumption was that the message was wrong or the targeting was off. I was about to recommend a campaign refresh — new creative, new targeting, new budget.</p>
+        </div>
+
+        <div class="star-section star-t">
+          <div class="star-label">Task</div>
+          <p>Before spending any budget on creative or media, I wanted to understand why customers were actually leaving. The data showed who was resigning. It did not show why.</p>
+        </div>
+
+        <div class="star-section star-a">
+          <div class="star-label">Action</div>
+          <p>Instead of building a brief, I went to the Manchester contact centre and spent a full day listening to actual resign calls. What I heard changed everything. Customers were not leaving because of the product or the price. They were confused. The CRM email language and the agent language were completely different — same moment, different offers, different tone. Customers did not know which to trust.</p>
+          <p>I came back and presented this to the team, not through a slide deck, but by playing back three anonymised call recordings. I said: "Before we redesign the campaign, listen to this." The room went quiet. Nobody had heard this before. I then proposed a fix that had nothing to do with creative: align the contact centre scripts with the CRM messaging. Same language, same offers, same timing.</p>
+        </div>
+
+        <div class="star-section star-r">
+          <div class="star-label">Result</div>
+          <p><strong>11% improvement in customer resign rates.</strong> Not from better emails. From closing the gap between what customers heard in marketing and what they heard on the phone. The fix cost nothing. The listening was the work.</p>
+        </div>
+
+        <div class="hook-box">
+          <div class="hook-label">Barclays hook</div>
+          <p>"At Barclays scale, the gap between what marketing says and what the bank delivers is a reputational risk as much as a retention problem. I would apply the same discipline: go to where the customer experience actually happens before recommending any marketing solution."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- L BACKUP -->
+    <div class="card">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-dark">L↑</div>
+          <div>
+            <div class="card-title">Listen and Be Authentic — Backup</div>
+            <div class="card-subtitle">STAR: Santander product challenge · Authentic over comfortable</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <p style="color:var(--muted);font-size:13px;"><em>Use this if the Manchester story was already heard or probed in Round 1.</em></p>
+
+        <div class="star-section star-s">
+          <div class="star-label">Situation</div>
+          <p>A senior product team leader at Santander was presenting projected ROI figures for a campaign that my models showed were 40% overstated. They had used best-case assumptions across every variable. Their team had been promised the campaign. Raising it publicly would embarrass them. Staying silent was easier.</p>
+        </div>
+
+        <div class="star-section star-t">
+          <div class="star-label">Task</div>
+          <p>Challenge the numbers honestly without destroying the relationship. The product lead was senior to me. Being authentic here meant telling them a difficult truth in a way they could hear it.</p>
+        </div>
+
+        <div class="star-section star-a">
+          <div class="star-label">Action</div>
+          <p>I requested a private meeting before the group budget review. I laid both sets of numbers side by side and said clearly: "I think these projections carry more risk than the base case suggests. I am not saying the campaign is wrong. I am saying we need to plan for the realistic scenario." I then offered a path forward: approve 60% now, gate the remaining 40% at week 4 based on in-flight data. When they pushed back, I held the position calmly: "If the data proves the model wrong, the remaining budget is yours immediately. I would rather protect your budget than gamble it."</p>
+        </div>
+
+        <div class="star-section star-r">
+          <div class="star-label">Result</div>
+          <p>The gated approach was approved. At week 4, in-flight data confirmed the base case. The remaining 40% was redirected to a higher-performing campaign. The product lead said the gate review approach was something they adopted for future planning. The working relationship was stronger for the honesty, not weaker.</p>
+        </div>
+
+        <div class="hook-box">
+          <div class="hook-label">Key phrase to land</div>
+          <p>"I believe transparency builds trust. I would rather have a difficult conversation early than let bad data drive a bad decision."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- E: ENERGISE -->
+    <div class="card" id="lead-e">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-green">E</div>
+          <div>
+            <div class="card-title">Energise and Inspire</div>
+            <div class="card-subtitle">STAR: The prototype moment at BT · Three sceptics become champions</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <p><strong>Predicted questions:</strong><br>
+        "Tell me about a time you motivated people who were sceptical or resistant."<br>
+        "How do you bring people with you when the change is uncomfortable?"</p>
+
+        <div class="star-section star-s">
+          <div class="star-label">Situation</div>
+          <p>When I proposed the single source of truth dashboard at BT, three functions — Marketing, Finance, and Commercial — each had their own spreadsheets, their own definitions, and years of habit. The proposal to replace all of that with one shared system was not popular. Each function feared they would lose visibility into what mattered to them. The instinct was to mandate it from above. I did not have that authority. I had to create belief in something they could not yet see.</p>
+        </div>
+
+        <div class="star-section star-t">
+          <div class="star-label">Task</div>
+          <p>Get three independently minded, sceptical teams to commit to a shared system before it existed — without mandate.</p>
+        </div>
+
+        <div class="star-section star-a">
+          <div class="star-label">Action</div>
+          <p>Instead of presenting a plan first, I built a prototype. Two weeks of weekend work. One month of data. A Tableau dashboard that pulled from all three function's numbers. Then I booked separate one-to-ones with each function lead.</p>
+          <p>In each meeting I did not present the dashboard. I asked one question first: "What is the one number you look at every Monday morning that tells you whether the previous week was good or bad?" Then I pulled up the dashboard and showed them that exact number, live, already in the system. For Marketing: cost per lead. For Finance: campaign spend versus plan. For Commercial: pipeline contribution.</p>
+          <p>When they could see their most important number in the shared system, the objection changed from "why should I give up my spreadsheet?" to "can you add the breakdown by product?"</p>
+        </div>
+
+        <div class="star-section star-r">
+          <div class="star-label">Result</div>
+          <p>All three functions committed within three weeks. The tiger team was formed. The system is still running three years later. <strong>No mandate was required.</strong> The prototype did the energising.</p>
+        </div>
+
+        <div class="hook-box">
+          <div class="hook-label">Barclays hook</div>
+          <p>"In a bank where Marketing, Risk, Finance, and Decision Intelligence all have legitimate stakes in measurement data, you cannot mandate alignment. You have to show people something real and let it pull them in."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- A: ALIGN -->
+    <div class="card" id="lead-a">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-amber">A</div>
+          <div>
+            <div class="card-title">Align Across the Enterprise</div>
+            <div class="card-subtitle">STAR: The definition wars at BT · 7 mismatches resolved before a line of code was written</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <p><strong>Predicted questions:</strong><br>
+        "Tell me about a time you had to align different parts of the business around a single goal."<br>
+        "How do you get agreement from people who have different definitions of success?"</p>
+
+        <div class="callout callout-blue">
+          <strong>Note:</strong> Anna heard the BT transformation story as the Change &amp; Transformation STAR. This is a different angle — it focuses on the alignment process (definition wars), not the transformation outcome. The result is different. The story feels fresh.
+        </div>
+
+        <div class="star-section star-s">
+          <div class="star-label">Situation</div>
+          <p>When I mapped data sources for the BT/EE SMB dashboard, I discovered that Marketing, Finance, and Commercial were not just using different spreadsheets. They were using different definitions for the same words. "Cost per acquisition" meant three different things. "Lead" had four definitions. "Campaign attribution" had two entirely different methodologies. Every joint meeting was built on this definitional chaos — and nobody had named it.</p>
+        </div>
+
+        <div class="star-section star-t">
+          <div class="star-label">Task</div>
+          <p>Before building anything, get three teams with competing interests and different functional loyalties to agree on a shared language. Not to change how they thought about their work, but to agree on what the words meant when they were in the same room.</p>
+        </div>
+
+        <div class="star-section star-a">
+          <div class="star-label">Action</div>
+          <p>I ran a three-session working series. Not "let's agree on the dashboard." I framed it as "let's agree on what we are measuring."</p>
+          <p>Session one: individually with each function — map every metric, what it means, what decision it informs. Session two: all three together with a side-by-side comparison of their definitions. Not to argue about who was right. To identify where the gaps were. I said: "Here is what Marketing means by cost per acquisition. Here is what Finance means. Here is what Commercial means. All three are valid internally. The question is what we use when we are all in the same room."</p>
+          <p>Session three: we agreed on 12 shared definitions. Each team kept their own internal metrics. But for joint conversations, there was one agreed set. I documented it as a one-page glossary and got all three function leads to sign off before I built a single line of the dashboard.</p>
+        </div>
+
+        <div class="star-section star-r">
+          <div class="star-label">Result</div>
+          <p>The 7 definition mismatches were resolved before the build started. When the dashboard launched, <strong>the numbers were trusted on day one</strong> because the definitions had been agreed in advance. The glossary is still the onboarding reference for new analysts across all three functions.</p>
+        </div>
+
+        <div class="hook-box">
+          <div class="hook-label">Barclays hook</div>
+          <p>"At Barclays, this role sits at the intersection of the CMO office, Decision Intelligence, Finance, and Marketing Planning. My first job here would be to build the glossary, not the dashboard. Alignment on language comes before alignment on numbers."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- D: DEVELOP -->
+    <div class="card" id="lead-d">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-green">D</div>
+          <div>
+            <div class="card-title">Develop Others</div>
+            <div class="card-subtitle">STAR: The analyst who could not influence · From reporter to advisor in 6 months</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <p><strong>Predicted questions:</strong><br>
+        "Tell me about a time you developed someone in your team."<br>
+        "How do you approach coaching people who are technically strong but lack broader business skills?"</p>
+
+        <div class="star-section star-s">
+          <div class="star-label">Situation</div>
+          <p>At Santander, one of my team of 4 analysts was technically excellent. Strong SQL, sharp with data, accurate in every report. But she was invisible in stakeholder meetings. Product directors would ignore her findings or override them with gut feel. She came to me frustrated: "I give them the numbers and they do whatever they wanted to do anyway. What is the point?"</p>
+        </div>
+
+        <div class="star-section star-t">
+          <div class="star-label">Task</div>
+          <p>She was right that the data was being ignored. But the problem was not the data — it was how she was presenting it. She was reporting, not recommending. She was telling stakeholders what happened without telling them what to do about it. Develop her from analyst to business advisor.</p>
+        </div>
+
+        <div class="star-section star-a">
+          <div class="star-label">Action</div>
+          <p>I started with one change: every report had to end with a recommendation, not a summary. Not "CPA went up 12% this month" — but "CPA went up 12% this month. My recommendation is to pause the underperforming creative and reallocate to the channel showing the strongest return. Here is the projected saving if we act this week versus next."</p>
+          <p>Then I coached her on the meeting dynamic. We did dry runs before every major stakeholder presentation. I would play the product director and interrupt with objections: "Why should I believe this model?" "The sales team says something different." She learned to hold her position with data, not just repeat the number louder.</p>
+          <p>The third intervention was exposure. I started bringing her to budget review meetings and letting her present her section — not with me leading and her supporting, but with her leading and me present if needed.</p>
+        </div>
+
+        <div class="star-section star-r">
+          <div class="star-label">Result</div>
+          <p>Within 6 months, product directors were going to her directly before budget meetings to stress-test their projections. The dynamic flipped: instead of her presenting findings they ignored, they were seeking her out to validate their assumptions. <strong>She was promoted within a year.</strong> The skill she developed was not technical. It was the ability to translate data into decisions in a room full of people who had not asked for her opinion.</p>
+        </div>
+
+        <div class="hook-box">
+          <div class="hook-label">Barclays hook</div>
+          <p>"The measurement team at Barclays will only be as effective as its ability to influence decisions in rooms where Marketing, Finance, and Decision Intelligence all have a voice. I would invest the same time developing the team's ability to advise, not just report."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: CRITICAL SKILLS -->
+    <div class="section-label" style="margin-top:40px;">Critical Skills — Round 2</div>
+    <h2 class="section-title">Five skills. Kirsty has heard none of them.</h2>
+    <p class="section-desc">These are the backup stories — fresh angles Anna has not heard in this framing. Use these if the competency comes up. Each answer is 2 minutes maximum.</p>
+
+    <!-- RISK & CONTROLS -->
+    <div class="card" id="cs-risk">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-red">R</div>
+          <div>
+            <div class="card-title">Risk and Controls</div>
+            <div class="card-subtitle">STAR: BT data accuracy risk · 3+ years of trusted numbers</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <p><strong>What they are really asking:</strong> "Can this person operate in a regulated environment? Do they understand governance? Will they protect the bank, not just chase marketing metrics?"</p>
+        <p><strong>Predicted questions:</strong><br>
+        <em>"Tell me about a time you identified and managed a risk in your work."</em><br>
+        <em>"How do you ensure governance and controls are built into your decision making?"</em><br>
+        <em>"Describe a situation where you balanced commercial pressure with risk management."</em></p>
+
+        <div class="callout callout-amber"><strong>Note:</strong> Anna heard the Santander budget governance story (£260K CAC savings). Use this BT story instead — Kirsty has never heard either.</div>
+
+        <div class="star-section star-s">
+          <div class="star-label">Situation</div>
+          <p>When I joined BT/EE, Marketing, Finance, and Commercial were all reporting different numbers for the same campaigns. Senior leaders were making investment decisions based on whichever spreadsheet arrived first. That is a risk — not a data quality problem. When the numbers are wrong, the decisions are wrong. And when those decisions involve reallocation of a £50M+ marketing budget, the financial risk is significant.</p>
+        </div>
+        <div class="star-section star-t">
+          <div class="star-label">Task</div>
+          <p>Build a reporting system where the numbers were accurate, auditable, and agreed by all three functions before they reached senior leadership. Not a governance policy. A working system with controls built in.</p>
+        </div>
+        <div class="star-section star-a">
+          <div class="star-label">Action</div>
+          <p>Before building anything, I mapped every data source across all three functions. I found 7 places where definitions diverged — different attribution windows, different CPA calculations, different date cut-offs. I brought all three teams into a room and we agreed on one set of definitions. Then I built the Tableau dashboard using only those agreed definitions, with every number traceable to a documented source. The refresh was automated — no one could manually adjust the figures between pulls. I also built in an audit trail: if a number changed week on week, the system flagged it for review before it went to stakeholders.</p>
+        </div>
+        <div class="star-section star-r">
+          <div class="star-label">Result</div>
+          <p>Weekly trading sessions stopped being debates about whose numbers were right. The system is still running 3+ years later. The data governance built into it means that when someone asks "why did CPA go up?", there is one answer, not three competing theories. <strong>15% SMB revenue growth</strong> followed — because the team could finally see what was actually working, and act on it with confidence.</p>
+        </div>
+        <div class="hook-box">
+          <div class="hook-label">Barclays hook</div>
+          <p>"At Barclays, the Marketing Insight team and the Decision Intelligence team need to be looking at the same numbers. If they are not, every recommendation carries risk. I have built this alignment twice and I know exactly where the definition mismatches hide."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHANGE & TRANSFORMATION -->
+    <div class="card" id="cs-change">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-blue">C</div>
+          <div>
+            <div class="card-title">Change and Transformation</div>
+            <div class="card-subtitle">STAR: Santander post-campaign to in-flight · 20% conversion improvement</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <p><strong>What they are really asking:</strong> "Has this person actually transformed how people work — not just delivered a project? Do they understand the human side of change?"</p>
+        <p><strong>Predicted questions:</strong><br>
+        <em>"Tell me about a time you led a significant change in how a team or organisation operated."</em><br>
+        <em>"How do you get buy-in from resistant stakeholders for a new way of working?"</em></p>
+
+        <div class="callout callout-amber"><strong>Note:</strong> Anna heard the BT single source of truth story. Use this Santander story — fresh for both Kirsty and Anna in this framing.</div>
+
+        <div class="star-section star-s">
+          <div class="star-label">Situation</div>
+          <p>At Santander, the marketing effectiveness team was doing post-campaign analysis only. Campaigns ran for 6 to 8 weeks, then we measured what happened. The problem: by the time the report landed, the budget was already spent and the next campaign was in market. We were always looking backwards. The team could describe what had happened. It could not change it.</p>
+        </div>
+        <div class="star-section star-t">
+          <div class="star-label">Task</div>
+          <p>Move the team from post-campaign reporting to in-flight measurement — catching underperforming campaigns while they were still running so budget could be reallocated in time to matter.</p>
+        </div>
+        <div class="star-section star-a">
+          <div class="star-label">Action</div>
+          <p>I redesigned the measurement cadence. Instead of one report at the end, we built weekly checkpoints at campaign level. I negotiated weekly data exports from the media agency — not monthly. I created a traffic light system: green, amber, red. For any red campaign, a rapid response process was triggered within 48 hours: a recommendation to the product team to pause, reallocate, or adjust targeting. The biggest resistance came from product teams who felt their campaigns were being judged too early. I reframed it: "This is not about judging. This is about protecting your budget. If we catch a leak in week 2, you get 6 weeks of spend back to put somewhere that works."</p>
+        </div>
+        <div class="star-section star-r">
+          <div class="star-label">Result</div>
+          <p>The Ant and Dec current account repositioning campaign was the first major test. We spotted a conversion bottleneck in week 3, adjusted the landing page targeting, and achieved a <strong>20% conversion improvement</strong>. Without in-flight measurement, that fix would have been a recommendation in a post-campaign report — too late to matter.</p>
+        </div>
+        <div class="hook-box">
+          <div class="hook-label">Barclays hook</div>
+          <p>"Moments of Progress is a long-running brand reappraisal platform. The measurement approach that worked for Moneyverse — post-campaign econometrics — is not sufficient on its own. You need monthly brand tracking and in-flight signals from day one. I have built that shift before."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUSINESS ACUMEN -->
+    <div class="card" id="cs-acumen">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-green">B</div>
+          <div>
+            <div class="card-title">Business Acumen</div>
+            <div class="card-subtitle">STAR: Santander £30M HNWI pipeline · 38 clients in 30 days, 7x previous results</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <p><strong>What they are really asking:</strong> "Does this person understand how a bank makes money? Can they connect marketing metrics to commercial outcomes? Do they think like a business person, not just an analyst?"</p>
+        <p><strong>Predicted questions:</strong><br>
+        <em>"Tell me about a time you used data to influence a significant business decision."</em><br>
+        <em>"How do you connect marketing measurement to commercial business objectives?"</em></p>
+
+        <div class="callout callout-amber"><strong>Note:</strong> Anna heard the BT Q2 budget reallocation story (15% revenue). This Santander story is fresh — and the £30M pipeline and 7x figure will land strongly with Kirsty's commercial banking background.</div>
+
+        <div class="star-section star-s">
+          <div class="star-label">Situation</div>
+          <p>Santander Private Banking wanted to grow their high-net-worth individual client base. The previous approach was broad awareness campaigns — slow, expensive, and poorly targeted. The product team was frustrated. They had a high-quality proposition but could not reach the right people efficiently.</p>
+        </div>
+        <div class="star-section star-t">
+          <div class="star-label">Task</div>
+          <p>Design a campaign that was commercially targeted, not just creatively interesting. Find the right people, reach them efficiently, and prove it was working in real time — not in a post-campaign report six weeks later.</p>
+        </div>
+        <div class="star-section star-a">
+          <div class="star-label">Action</div>
+          <p>I started with the existing customer data — not with media planning. I built a profile of Santander's current HNWI clients: income bands, geographic clusters, digital behaviour, product holdings. Then I used that profile to build a hyper-targeted LinkedIn campaign. Specific job titles, income indicators, geographic zones around branches with Private Banking capability. Before launch, I built the full measurement framework: cost per lead, cost per qualified meeting, cost per new client, and pipeline value attribution. Weekly reporting from day one. Direct line from ad spend to pipeline value so the product team could see the commercial return as it built.</p>
+        </div>
+        <div class="star-section star-r">
+          <div class="star-label">Result</div>
+          <p><strong>£30M in pipeline value. 38 new HNWI clients in 30 days. 7x the results of the previous approach.</strong> The data told us who to reach. The measurement told us it was working in week one, not month three.</p>
+        </div>
+        <div class="hook-box">
+          <div class="hook-label">Barclays hook</div>
+          <p>"Barclays has 20 million customers. The measurement challenge is not reach — it is knowing which customers to deepen relationships with and which marketing investments drive that deepening. That is a business acumen question, not a media planning question."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STRATEGIC THINKING -->
+    <div class="card" id="cs-strategic">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-blue">S</div>
+          <div>
+            <div class="card-title">Strategic Thinking</div>
+            <div class="card-subtitle">STAR: Santander brand-to-performance framework · budget language unified across the bank</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <p><strong>What they are really asking:</strong> "Does this person see the big picture? Can they connect measurement work to bank strategy? Do they think 12 months ahead, not just about the next campaign?"</p>
+        <p><strong>Predicted questions:</strong><br>
+        <em>"Tell me about a time you developed a long-term strategic plan and delivered it."</em><br>
+        <em>"How do you prioritise when there are multiple competing measurement needs?"</em><br>
+        <em>"How would you approach building a measurement strategy for Barclays?"</em></p>
+
+        <div class="callout callout-amber"><strong>Note:</strong> Anna heard the BT measurement architecture story. This Santander brand-vs-performance framework is fresh — and directly relevant to Moments of Progress.</div>
+
+        <div class="star-section star-s">
+          <div class="star-label">Situation</div>
+          <p>At Santander, the marketing team was split. Product teams wanted performance metrics: CPA, conversion, cost per lead. The brand team wanted consideration, awareness, sentiment. Both were right — but there was no framework that measured both together. Brand campaigns were being judged on performance metrics and always looked expensive. Performance campaigns ignored brand impact and missed the long-term effect. Every budget meeting became a brand-versus-performance argument with no shared language and no way to resolve it.</p>
+        </div>
+        <div class="star-section star-t">
+          <div class="star-label">Task</div>
+          <p>Build a measurement framework that evaluated both campaign types fairly — using metrics appropriate to each — while showing the CMO how they connected to overall business growth. The strategic goal was to end the argument by giving both sides a shared language.</p>
+        </div>
+        <div class="star-section star-a">
+          <div class="star-label">Action</div>
+          <p>I created a two-tier model. Tier one: every campaign — regardless of type — got the same set of shared business metrics: CAC, contribution to new accounts, revenue attribution. Non-negotiable. Tier two: brand campaigns got additional brand metrics (consideration shift, awareness lift, NPS movement) and performance campaigns got additional channel metrics (CPA, ROAS, conversion rate by funnel step). The critical strategic insight was the quarterly correlation report — showing that when brand consideration went up, performance campaign conversion rates improved in the following quarter. Brand was not a cost centre. It was an accelerator. I built the data to prove it, then presented it to the Marketing Director and all Product Directors together for the first time.</p>
+        </div>
+        <div class="star-section star-r">
+          <div class="star-label">Result</div>
+          <p>Budget arguments stopped. The framework gave everyone a shared language. Brand investment was protected because its commercial contribution was visible. The Ant and Dec current account repositioning proved it: brand investment drove a <strong>20% conversion improvement</strong> in the performance layer the following quarter. The LinkedIn thought leadership programme delivered <strong>10% corporate segment growth</strong> through organic reach — no paid spend at all.</p>
+        </div>
+        <div class="hook-box">
+          <div class="hook-label">Barclays hook — especially relevant for Moments of Progress</div>
+          <p>"This is exactly the strategic challenge Moments of Progress creates. It is a brand reappraisal platform. The measurement framework needs to show how it changes customer perception — and then how that perception change deepens customer relationships over time. I have built that connection between brand investment and commercial outcome before. It is the measurement architecture Barclays needs now."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIGITAL & TECHNOLOGY -->
+    <div class="card" id="cs-digital">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-blue">D</div>
+          <div>
+            <div class="card-title">Digital and Technology</div>
+            <div class="card-subtitle">STAR: Santander cross-channel infrastructure · SQL, SAS, £260K CAC savings</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <p><strong>What they are really asking:</strong> "Can this person work with modern marketing technology? Do they understand data platforms and analytics tools? Can they translate technical capability into business value?"</p>
+        <p><strong>Predicted questions:</strong><br>
+        <em>"Tell me about a time you used technology to solve a measurement challenge."</em><br>
+        <em>"What tools have you built with and what did you actually deliver?"</em><br>
+        <em>"How would you approach the shift from cookie-based measurement to privacy-compliant alternatives?"</em></p>
+
+        <div class="callout callout-amber"><strong>Note:</strong> Anna heard the BT automated Tableau dashboard story. This Santander cross-channel infrastructure story is fresh — it shows SQL and SAS capability and a direct commercial outcome.</div>
+
+        <div class="star-section star-s">
+          <div class="star-label">Situation</div>
+          <p>At Santander, marketing ran across TV, radio, digital display, paid social, paid search, direct mail, and branch. Each channel had its own reporting tool. TV was measured by the media agency using BARB data. Digital was in Google Analytics and Adobe. Paid social was in platform dashboards. Direct mail was tracked through response codes in the CRM. There was no single view of how these channels worked together — and no way to compare their efficiency using a common metric.</p>
+        </div>
+        <div class="star-section star-t">
+          <div class="star-label">Task</div>
+          <p>Build a measurement infrastructure that could compare apples to apples across offline and online channels — so budget allocation decisions were based on actual cross-channel performance, not channel-siloed reports.</p>
+        </div>
+        <div class="star-section star-a">
+          <div class="star-label">Action</div>
+          <p>I built a cross-channel performance model using SQL and SAS. The core challenge was normalisation: TV reach figures are measured differently from digital impressions, which are different from direct mail response rates. I created a common framework: every channel was measured on cost per acquired customer — not channel-specific metrics. This required connecting CRM data (which customer, which product, when acquired) to channel data (which campaign, which creative, which audience) through UTM tagging and customer identifiers. For offline channels, I worked with the econometrics agency to convert MMM model outputs into a comparable cost-per-acquisition figure. I then built the reporting in Excel first — the team's comfort zone — and migrated the senior stakeholder views to Tableau dashboards once trust was established.</p>
+        </div>
+        <div class="star-section star-r">
+          <div class="star-label">Result</div>
+          <p>For the first time, the marketing team could see all channels on one page with comparable metrics. The insight was immediate: two digital channels were significantly more efficient than realised, and one offline channel was three times more expensive per acquired customer than the blended average suggested. Reallocating 15% of spend delivered <strong>£260K in annual CAC savings</strong>. The technology made the insight possible. The business case made the change happen.</p>
+        </div>
+        <div class="hook-box">
+          <div class="hook-label">Barclays hook</div>
+          <p>"Barclays runs across TV, cinema, VOD, radio, OOH, social, digital, and branch. Each channel has its own reporting ecosystem. I have built the cross-channel infrastructure that makes them comparable — using SQL, SAS, and Tableau, the same tools in Barclays' stack. The normalisation logic is the hard part. The tools are already there."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VALUES & MINDSET -->
+    <div class="card" id="values">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-green">V</div>
+          <div>
+            <div class="card-title">Values and Mindset — Full Coverage</div>
+            <div class="card-subtitle">Respect, Integrity, Service, Excellence, Stewardship · Empower, Challenge, Drive</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+
+        <div class="callout callout-blue">
+          <strong>Stewardship is the one value with no answer anywhere in the deck.</strong> The others were covered in Round 1 — quick reminders below. If any values question comes up, use these. They are fresh angles for Kirsty.
+        </div>
+
+        <h3>Stewardship — NEW (not covered in Round 1)</h3>
+        <p><em>"We prize sustainability and are passionate about leaving things better than we found them."</em></p>
+        <p><strong>Predicted question:</strong> <em>"Tell me about a time you left something better than you found it."</em></p>
+        <div class="star-section star-r">
+          <div class="star-label">Your Answer</div>
+          <p>"The clearest example is the BT measurement system. When I joined, the SMB marketing team had fragmented reporting across three functions and no agreed definitions. I built the single source of truth — one dashboard, one set of definitions, one operating model for decisions. Three and a half years later, I am still at BT and that system is still running. But the real stewardship test will come when I leave. I designed it to run without me. The definitions are documented. The governance is embedded. The tiger team that uses it every week does not need me to convene it. If my successor comes in tomorrow, the infrastructure is there for them to build on — not start again from scratch. That is what leaving something better than you found it means to me: not a project you delivered, but a capability you installed."</p>
+        </div>
+
+        <h3>Respect and Integrity</h3>
+        <p><em>"We harness the power of diversity. We operate with honesty, courage, transparency and fairness."</em></p>
+        <p><strong>Your story:</strong> The Santander product director challenge — challenging overstated ROI projections privately before the group meeting, holding the position when pushed back, proposing the gated budget approach. <em>"I believe transparency builds trust. I would rather have a difficult conversation early than let bad data drive a bad decision."</em></p>
+
+        <h3>Service and Excellence</h3>
+        <p><em>"We act with empathy and humility. We set high standards, championing innovation."</em></p>
+        <p><strong>Your story:</strong> The BT Commercial team's Thursday request for a Monday board presentation. Cancelled Friday afternoon. Built the data model from scratch. Sent two versions Sunday evening — the live dashboard for pre-read, the static deck for the meeting. <em>"Excellence to me means the work is so clear that the recipient never has to ask what it means."</em></p>
+
+        <h3>Empower (Mindset)</h3>
+        <p><em>"Trust, support and inspire each other. Celebrate success. Learn from failure."</em></p>
+        <p><strong>Your story:</strong> The Santander analyst who came to you frustrated that her data was being ignored. Six months of coaching — recommendation-not-summary rule, dry run objection practice, exposure to budget meetings. Promoted within a year. Product directors sought her out before meetings to validate assumptions.</p>
+
+        <h3>Challenge (Mindset)</h3>
+        <p><em>"Question whether things can be improved. Be curious and ambitious. Use data to inform decisions."</em></p>
+        <p><strong>Your story:</strong> Manchester contact centre — challenged the assumption that retention was failing because of campaign messaging. Went to the source. Discovered the real problem was alignment between CRM language and agent language. Fix cost nothing. <strong>11% improvement in resign rates.</strong></p>
+
+        <h3>Drive (Mindset)</h3>
+        <p><em>"Act like an owner. Take personal accountability. Manage risks proactively. Focus on outcomes."</em></p>
+        <p><strong>Your story:</strong> BT Q2 budget reallocation — built the financial model, presented to Marketing Director first to get alignment, then jointly to Finance and Commercial. Moved money mid-year when the annual allocation had never been touched. <strong>15% SMB revenue growth.</strong> <em>"When Finance sees the same model and agrees, it sounds like a business decision, not a marketing preference."</em></p>
+
+      </div>
+    </div>
+
+    <!-- SECTION: TECHNICAL -->
+    <div class="section-label" style="margin-top:40px;">Technical Skills</div>
+    <h2 class="section-title">Show them you understand the methodology, not just the output.</h2>
+    <p class="section-desc">They want to know if you can design a test, not just commission one. Be specific. Be honest about where your depth ends.</p>
+
+    <!-- TECH OVERVIEW -->
+    <div class="card" id="tech-overview">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-blue">T</div>
+          <div>
+            <div class="card-title">Technical Skills — What They Are Testing</div>
+            <div class="card-subtitle">Methodology depth, tool fluency, data architecture, statistical understanding</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <p>For this specific role, Technical Skills means four things:</p>
+
+        <div class="table-wrap">
+          <table>
+            <tr><th>Area</th><th>What they are testing</th><th>Your evidence</th></tr>
+            <tr><td><strong>Methodology</strong></td><td>Can you design an incrementality test? Do you understand where MMM breaks?</td><td>Incrementality design answer (next card). Santander MMM framework implementation.</td></tr>
+            <tr><td><strong>Tool fluency</strong></td><td>What have you actually built with SQL, Tableau, Adobe?</td><td>BT Tableau dashboard. Santander SQL attribution logic. SAS cross-channel model.</td></tr>
+            <tr><td><strong>Data architecture</strong></td><td>Do you understand how data flows from source to decision? Can you identify where definitions break?</td><td>BT definition alignment (7 mismatches). Data model design for BT dashboard.</td></tr>
+            <tr><td><strong>Statistical fluency</strong></td><td>Do you know the difference between directional and significant? Do you know when a result is usable?</td><td>Region matching methodology. Sample size and test duration awareness.</td></tr>
+          </table>
+        </div>
+
+        <h3>Most Likely Technical Questions</h3>
+        <ul>
+          <li>"Walk me through how you would design an incrementality test for a major TV campaign."</li>
+          <li>"What is the difference between attribution and incrementality, and when would you use each?"</li>
+          <li>"How do you handle situations where the data quality is poor?"</li>
+          <li>"What tools have you used and what have you actually built with them?"</li>
+          <li>"How do you approach measuring brand campaigns alongside performance?"</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TECH INCREMENTALITY -->
+    <div class="card" id="tech-incrementality">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-blue">T</div>
+          <div>
+            <div class="card-title">Incrementality — The Full Answer</div>
+            <div class="card-subtitle">How to design a geo holdout test for Moments of Progress TV</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <div class="callout callout-green">
+          <strong>Use this if they ask:</strong> "How would you design an incrementality test?" or "How would you measure whether TV is actually working?"
+        </div>
+
+        <p>"Incrementality testing answers a question that attribution cannot: did the ad cause the conversion, or would they have converted anyway?</p>
+
+        <p>Here is how I would design the first test at Barclays. I would start with Moments of Progress TV — the highest spend channel. If you can prove TV incrementality, every budget conversation changes."</p>
+
+        <h3>Step 1: Region Matching</h3>
+        <p>Pull 18 months of historical data — mortgage applications, current account openings, app downloads — at ITV region level. Match regions on: population, existing Barclays market share, historical application rates, demographic profile, and branch density. Create 6 to 8 matched pairs using nearest-neighbour or propensity scoring. Decision Intelligence validates the methodology.</p>
+        <p><em>Example pairs: West Midlands vs East Midlands. South Wales vs South West. Glasgow vs Edinburgh.</em></p>
+
+        <h3>Step 2: Test Design</h3>
+        <p><strong>Control group:</strong> Full Moments of Progress campaign running — TV, BVOD, OOH, digital.<br>
+        <strong>Holdout group:</strong> Suppress TV only. Keep digital and OOH running. The only variable is TV.<br>
+        <strong>Duration:</strong> 6 weeks minimum. Brand campaigns take longer to show effect than performance campaigns.</p>
+
+        <h3>Step 3: Measurement</h3>
+        <p>Primary KPIs: mortgage applications, current account openings, app downloads by region. Compare lift between matched pairs. Calculate incremental applications attributable to TV. Divide by TV media spend in those regions. You now have a true cost per incremental application — not attributed, caused.</p>
+
+        <h3>Where Tests Break</h3>
+        <ul>
+          <li><strong>Region spillover</strong> — if ITV regions overlap, the holdout gets exposed. Need clean geographic boundaries.</li>
+          <li><strong>Statistical power</strong> — you need enough historical variance to detect a signal. Barclays volumes are high enough. This is not a blocker.</li>
+          <li><strong>Ending early</strong> — stopping a test because early results look good is the most common mistake. Commit to the full duration.</li>
+        </ul>
+
+        <div class="callout callout-amber">
+          <strong>Honest framing on experience:</strong> "At Santander I worked with an econometrics agency that ran MMM. I implemented the framework connecting model outputs to budget decisions. I have not personally executed a geo holdout end to end — but I have designed the methodology, I understand the statistical requirements, and this is what I would build in the first 90 days in partnership with Decision Intelligence."
+        </div>
+
+        <h3>Attribution vs Incrementality — The One-Liner</h3>
+        <p>"Attribution tells you which touchpoints were present before a conversion. Incrementality tells you which touchpoints caused it. Attribution is descriptive. Incrementality is causal. For budget decisions that matter, you need the causal answer."</p>
+      </div>
+    </div>
+
+    <!-- TECH TOOLS -->
+    <div class="card" id="tech-tools">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-blue">T</div>
+          <div>
+            <div class="card-title">Your Tool Stack — What You Have Actually Built</div>
+            <div class="card-subtitle">SQL, Tableau, SAS, Adobe Analytics, Python — honest boundaries</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <div class="table-wrap">
+          <table>
+            <tr><th>Tool</th><th>What you built</th><th>Depth</th></tr>
+            <tr>
+              <td><strong>SQL</strong></td>
+              <td>Cross-channel attribution logic at Santander (GA sessions to CRM conversions via UTM + customer IDs). Data joins and transformations for BT dashboard — 5 source systems into one data model with agreed definitions.</td>
+              <td>Strong — independent</td>
+            </tr>
+            <tr>
+              <td><strong>Tableau</strong></td>
+              <td>BT SMB dashboard. Designed the data model, built the visualisation layer, automated refresh from agency exports and internal CRM. Saves one working day per week. Still running 3+ years later. Used by Marketing, Finance, and Commercial.</td>
+              <td>Strong — independent</td>
+            </tr>
+            <tr>
+              <td><strong>SAS</strong></td>
+              <td>Segmentation modelling and cross-channel performance analysis at Santander. Standard for financial services environments.</td>
+              <td>Proficient</td>
+            </tr>
+            <tr>
+              <td><strong>Adobe Analytics</strong></td>
+              <td>Client-side experience at both Santander (Google Analytics) and BT. Have used Adobe data as input into cross-channel models. At Barclays would connect Adobe to broader measurement framework through agreed UTM conventions and conversion event tagging.</td>
+              <td>Familiar — collaborative</td>
+            </tr>
+            <tr>
+              <td><strong>Python</strong></td>
+              <td>Directionally familiar. Used for exploratory analysis. Not the primary tool — work with engineering teams for production pipelines. At Barclays, would partner with Decision Intelligence on Python-heavy work.</td>
+              <td>Honest: collaborative</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="callout callout-blue">
+          <strong>The honest framing to use:</strong> "My technical strengths are in data architecture, measurement design, and translating analytical output into business decisions. I am strong enough technically to build frameworks and validate methodology. At this level, the value is in knowing what to build and with whom — not in writing every line of code myself."
+        </div>
+      </div>
+    </div>
+
+    <!-- MOMENTS OF PROGRESS CARD -->
+    <div class="card" id="mom-framework">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-blue">MoP</div>
+          <div>
+            <div class="card-title">Moments of Progress — The Measurement Framework</div>
+            <div class="card-subtitle">The wow moment. 3 to 4 minutes. Shows you have already done the thinking.</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <div class="callout callout-green">
+          <strong>Trigger:</strong> "How would you measure Moments of Progress?" or "What does brand reappraisal measurement look like?" This answer signals you understand the strategic shift the interviewer described — customer-centric, not product-led.
+        </div>
+
+        <h3>Predicted Questions</h3>
+        <ul>
+          <li><em>"How would you approach measuring the Moments of Progress campaign?"</em></li>
+          <li><em>"Moneyverse won an IPA Award. How would you build a measurement framework for a brand reappraisal campaign like Moments of Progress?"</em></li>
+          <li><em>"Tell me about a time you designed a measurement framework for a brand campaign — not a performance campaign."</em></li>
+          <li><em>"How do you measure brand investment that is not tied to a direct product outcome?"</em></li>
+          <li><em>"What is the difference between how you would measure an awareness campaign versus a brand reappraisal campaign?"</em></li>
+        </ul>
+
+        <h3>Open With the Framing Shift</h3>
+        <p>"Before designing any measurement framework for Moments of Progress, the most important thing to acknowledge is that this campaign is different in kind from Moneyverse — not just in scale.</p>
+        <p>Moneyverse was a product narrative. We could measure it the way we measure most direct response campaigns. Consideration, awareness, mortgage applications, econometric attribution. 3.97 GBP per pound invested. Clean and linear.</p>
+        <p>Moments of Progress is a brand reappraisal platform. The outcome we are trying to shift is not a product purchase. It is how people feel about Barclays and whether they believe Barclays can genuinely support their progress. That requires a fundamentally different measurement architecture."</p>
+
+        <h3>Connect to the North Star — Why This Campaign Exists</h3>
+        <p>"To design the right framework, you have to start with the strategic problem the campaign is solving.</p>
+        <p>Barclays has the highest market share in UK retail banking. Second highest digital activity. But satisfaction scores are below competitors. That paradox tells you something important: acquisition is not Barclays' problem. The relationship after acquisition is the problem.</p>
+        <p>Moments of Progress is designed to address exactly that. To shift perception from 'Barclays is where my money sits' to 'Barclays is a partner in what I am trying to do.' That is a customer-centric repositioning, not a product push.</p>
+        <p>So the primary success metric for this campaign is not mortgage applications. It is whether customers feel differently about Barclays. And whether that feeling changes their behaviour over time."</p>
+
+        <h2>Three-Layer Measurement Architecture</h2>
+
+        <div class="star-section star-t">
+          <div class="star-label">Layer 1 — Brand Health (the right primary metric)</div>
+          <p>The first layer measures whether perception is actually shifting.</p>
+          <p><strong>Acacia Avenue brand tracking, monthly not quarterly.</strong> Brand reappraisal campaigns need shorter measurement loops. Monthly cadence lets you course correct before the next burst.</p>
+          <p>Track: brand consideration, brand distinctiveness, and emotional resonance with the 'progress' positioning. The campaign insight — "progress is an innate desire, but few feel able to achieve it alone" — becomes your measurement anchor. Does the brand now feel like an enabler of progress?</p>
+          <p><strong>Pre and post NPS by customer segment:</strong> existing customers exposed to the campaign versus a matched control group. The shift in NPS is the attitudinal proof.</p>
+        </div>
+
+        <div class="star-section star-a">
+          <div class="star-label">Layer 2 — Attitudinal to Behavioural Bridge (the connecting tissue)</div>
+          <p>This is the critical insight most measurement frameworks miss for brand campaigns.</p>
+          <p>Brand reappraisal changes perception first, then behaviour. But there is a lag. You cannot measure whether Moments of Progress is working in the first 8 weeks by looking at product sales. You measure the attitudinal shift first, then follow the same customers to see whether it changes how they use the bank.</p>
+          <p><strong>Matched customer cohort analysis:</strong> customers exposed to Moments of Progress versus a matched unexposed group. With 25 million weekly app logins, the first party data is already there.</p>
+          <p>Track over 6 to 12 months: app engagement depth, number of products held, frequency of service interactions, incoming enquiry rate.</p>
+          <p><strong>The hypothesis:</strong> customers whose perception of Barclays shifts toward 'progress partner' will deepen their relationship with the bank over the following 12 months.</p>
+          <p>This is a relationship deepening metric, not a conversion metric. The unit of measure is the customer, not the transaction.</p>
+        </div>
+
+        <div class="star-section star-r">
+          <div class="star-label">Layer 3 — Long-Term Commercial Value (north star)</div>
+          <p>The third layer connects brand investment to Barclays' stated strategic priority: deepening customer relationships.</p>
+          <p>Measure: customer lifetime value trajectory by segment, depth of relationship (products held per customer, interaction frequency), and retention rates for customers whose consideration scores improved.</p>
+          <p><strong>The IPA Award submission frame:</strong> Moments of Progress should be entered for brand transformation proof, not econometric ROI. "We closed the satisfaction gap. Here is how we proved the campaign caused it." That is a harder thing to prove than a GBP per pound return — and it is worth more to the organisation.</p>
+        </div>
+
+        <h3>The Honest Methodological Challenge</h3>
+        <div class="callout callout-amber">
+          "The hardest challenge is isolating Moments of Progress' contribution from everything else that affects satisfaction — branch experience, app quality, interest rate decisions, customer service interactions. This is why the framework cannot rely on econometrics alone. You need matched cohort analysis at the individual customer level, using Barclays' first party data, combined with Acacia Avenue's attitudinal tracking. The two data sets together — what people say they feel and what their app behaviour shows — is the proof architecture. One without the other leaves you with either sentiment without commercial evidence, or commercial signals without a causal mechanism."
+        </div>
+
+        <div class="hook-box">
+          <div class="hook-label">Barclays hook — land this last</div>
+          <p>"This is what makes this role genuinely interesting to me. Barclays has 25 million weekly app logins — a first party dataset most companies would pay millions for. It has brand tracking through Acacia Avenue. It has Decision Intelligence. What it does not have yet is the measurement architecture that connects all three into a single proof that Moments of Progress is closing the satisfaction gap. Building that architecture is the strategic prize of this role."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MoP PUSHBACKS -->
+    <div class="card" id="mom-pushbacks">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-amber">MoP!</div>
+          <div>
+            <div class="card-title">Moments of Progress — Mock Pushbacks</div>
+            <div class="card-subtitle">They will challenge the framework. Have the recovery answers ready.</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+
+        <div class="pushback">
+          <div class="pushback-q">"This is all very conceptual. Have you actually built this kind of brand measurement framework before?"</div>
+          <div class="pushback-a">"At Santander, I built the framework that connected brand tracking to performance measurement — showing the correlation between consideration shifts and conversion rate improvement in the following quarter. The Ant and Dec current account repositioning was the proof point: brand investment drove a 20% conversion improvement in the performance layer. I have not built a full attitudinal-to-behavioural cohort model for a brand reappraisal campaign at this scale — but the methodology is sound, the data at Barclays makes it feasible, and I would partner with Decision Intelligence to validate the design. The honest answer is: what I have built at Santander is the closest comparable. The scale and ambition here is bigger."</div>
+        </div>
+
+        <div class="pushback">
+          <div class="pushback-q">"How long before we would have any results? Brand measurement takes 12 to 18 months. The business wants faster answers."</div>
+          <div class="pushback-a">"That is exactly right — and it is why the framework has three layers. Layer 1, the Acacia Avenue brand tracking, runs monthly. You will have directional attitudinal data within 60 days of campaign launch. That gives the team something to act on while the longer-term cohort analysis builds. Layer 2, the behavioural data from app logins, starts accumulating immediately — you just need 6 to 12 months to see the relationship deepening signal clearly. Layer 3, the commercial value measurement, is a 12 to 18 month story. The business gets leading indicators fast. The full proof takes time. That is not a flaw in the framework — it is the honest reality of measuring brand reappraisal, and it is how I would set expectations with the CMO from day one."</div>
+        </div>
+
+        <div class="pushback">
+          <div class="pushback-q">"You talked about using app login data to build matched cohorts. But not everyone who sees the campaign is a Barclays customer. How do you measure the impact on prospects and non-customers?"</div>
+          <div class="pushback-a">"That is a critical distinction and you are right to separate them. The cohort methodology I described works for existing customers — where we have the behavioural data in the app. For non-customers, the measurement has to run through the Acacia Avenue brand tracking, which captures consideration among the broader market, including non-customers. You can also use matched regional analysis — ITV geo holdout — to measure whether the campaign shifted application rates in exposed versus unexposed regions. So the full framework is: Acacia Avenue for market-wide brand movement, cohort analysis for existing customer relationship deepening, and geo holdout for new customer acquisition lift. Each answers a different part of the question."</div>
+        </div>
+
+        <div class="pushback">
+          <div class="pushback-q">"Barclays already has econometrics from the Moneyverse work. Why not just run the same model for Moments of Progress?"</div>
+          <div class="pushback-a">"Because econometrics answers the wrong question for a brand reappraisal campaign. Moneyverse econometrics showed which marketing touchpoints drove mortgage applications. That is the right question for a product narrative. For Moments of Progress, the question is whether the campaign shifted how people feel about Barclays and whether that feeling deepened their relationship with the bank over time. Econometrics cannot measure that — it was not designed to. You would run the econometrics as one layer to capture any short-term commercial signal, but the primary measurement is attitudinal and behavioural, not econometric. Using the same model as Moneyverse would give you an answer, but it would be the wrong answer to the wrong question."</div>
+        </div>
+
+        <div class="pushback">
+          <div class="pushback-q">"You mentioned an IPA Award submission for brand transformation. That is ambitious. Is that realistic given this campaign has only just launched?"</div>
+          <div class="pushback-a">"The IPA submission is a 12 to 24 month ambition, not a near-term deliverable. I raised it as the north star because the IPA Effectiveness Awards are the industry benchmark for proving marketing works — and Moments of Progress has the potential to be an award-winning case study if the measurement is right from the start. Barclays already won with Moneyverse. The next submission should be on brand transformation proof, which is a harder and more impressive category. But you are right that this is a long-term ambition. The immediate priority is building the framework correctly so that the evidence is there when the time comes — not scrambling to reconstruct causality from incomplete data two years from now."</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION: PUSHBACKS -->
+    <div class="section-label" style="margin-top:40px;">Pushbacks and Stress Tests</div>
+    <h2 class="section-title">Know the hard questions before they ask them.</h2>
+    <p class="section-desc">Kirsty will probe cross-functional credibility. Anna will probe depth. Both will test MDB. Have the answers ready.</p>
+
+    <div class="card" id="pushbacks">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-amber">!</div>
+          <div>
+            <div class="card-title">Mock Pushbacks — Round 2</div>
+            <div class="card-subtitle">Four likely challenges and how to handle each</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+
+        <div class="pushback">
+          <div class="pushback-q">Kirsty: "You have described cross-functional work, but your experience is in marketing functions. How would you operate in a bank where you are challenging colleagues in Risk or Finance?"</div>
+          <div class="pushback-a">"My measurement role at BT was fundamentally a cross-functional role, not a marketing role. I ran weekly trading sessions where the attendees were Finance and Commercial directors, not marketing managers. My job was to bring them information that changed how they allocated budget — money that sat in their P&L, not mine. When Finance and Commercial trust your numbers, you have influence beyond your function. That is the model I would build at Barclays."</div>
+        </div>
+
+        <div class="pushback">
+          <div class="pushback-q">Anna: "In our last conversation you described the BT measurement system. What would you do differently if you were starting from scratch?"</div>
+          <div class="pushback-a">"I would invest more time in the definition alignment before the build. At BT I discovered the definition mismatches partway through. If I had run the three-session working series first — agreeing on the shared language before writing any code — the build would have been faster and the trust higher from day one. The measurement architecture was right. The stakeholder alignment process should have been parallel, not sequential."</div>
+        </div>
+
+        <div class="pushback">
+          <div class="pushback-q">Either: "You have a side business. If we hire you, how do we know you are fully committed to Barclays?"</div>
+          <div class="pushback-a">"Yes. MDB is a side project I use to stay sharp on GTM strategy and current market thinking — it has sharpened my skills significantly, particularly in measurement frameworks and strategic positioning. But it is not a competing commitment. I have been in full-time employment throughout, and that is where my primary focus sits. Barclays would have my full commitment."</div>
+        </div>
+
+        <div class="pushback">
+          <div class="pushback-q">Anna: "You talked about building systems. But this role also involves day-to-day insight delivery. How do you balance strategic build with operational delivery?"</div>
+          <div class="pushback-a">"The systems exist to make operations faster and more reliable, not to replace them. At BT, the dashboard saved one full day per week of manual reporting — which freed my team to do actual analysis rather than data assembly. The first 90 days here would be operational: understand what exists, deliver to the current rhythm, earn the trust of stakeholders. The strategic build is months 3 to 12, not week one."</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- STRESS TESTS -->
+    <div class="card" id="stress">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-red">⚡</div>
+          <div>
+            <div class="card-title">Stress Tests — Round 2</div>
+            <div class="card-subtitle">The harder questions. Prepared answers.</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+
+        <h3>The Leadership Gap Trap</h3>
+        <div class="pushback">
+          <div class="pushback-q">"You managed a team of 4 at Santander and a cross-functional group at BT. Barclays is significantly larger. How do you know you can lead at this scale?"</div>
+          <div class="pushback-a">"Leadership at scale is not about leading more people — it is about leading differently. At BT, the tiger team I convened had more combined budget influence than my direct team at Santander. I was not their line manager. I had to earn their engagement every week. That is harder than managing direct reports. At Barclays, the measurement function will sit at the intersection of the CMO office, Decision Intelligence, Finance, and Marketing Planning. I have operated in that kind of environment. The scale of the bank is new. The dynamic is familiar."</div>
+        </div>
+
+        <h3>The Python Trap</h3>
+        <div class="pushback">
+          <div class="pushback-q">"The JD lists Python as a required skill. How proficient are you?"</div>
+          <div class="pushback-a">"Directionally proficient. I use Python for exploratory analysis and have worked with data engineering teams who use it for production pipelines. My core technical strengths are SQL and Tableau, which is where the measurement work at this level actually lives — data modelling, attribution logic, visualisation. For Python-heavy work, I would partner with the Decision Intelligence team. I would not pretend otherwise."</div>
+        </div>
+
+        <h3>The Commitment Trap (MDB)</h3>
+        <div class="pushback">
+          <div class="pushback-q">"You run a consultancy on the side. Why should Barclays believe this is not a stepping stone while you build the business?"</div>
+          <div class="pushback-a">"3.5 years at BT. 2.5 years at Santander. I am not a job hopper. MDB sharpened my strategic thinking but it confirmed something for me: the work I find most meaningful is building measurement systems inside organisations with real scale. MDB is client work. Barclays is infrastructure. These are different things. I want to build something that runs for years. That requires the resources and the mandate that only a bank of this size can give."</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION: CLOSING -->
+    <div class="section-label" style="margin-top:40px;">Closing</div>
+    <h2 class="section-title">End strong. Ask a question they have not heard before.</h2>
+
+    <!-- QUESTIONS -->
+    <div class="card" id="questions">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-green">Q</div>
+          <div>
+            <div class="card-title">Questions to Ask — Round 2</div>
+            <div class="card-subtitle">Tailored to Anna and Kirsty separately</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <h3>For Kirsty (Corporate Banking lens)</h3>
+        <ul>
+          <li>"From your perspective in the bank, what would success look like for this role in terms of how it partners with functions outside of marketing?"</li>
+          <li>"How does the measurement function currently interface with Risk and Compliance when it comes to marketing claims and FCA sign-off?"</li>
+        </ul>
+
+        <h3>For Anna (Follow-up from Round 1)</h3>
+        <ul>
+          <li>"In our last conversation we touched on the Decision Intelligence partnership. Has the structure of that relationship been defined, or is that something the person in this role would shape?"</li>
+          <li>"What is the one measurement challenge the marketing team has been unable to solve that you most want this role to address?"</li>
+        </ul>
+
+        <h3>For Both</h3>
+        <ul>
+          <li>"What does the first 90 days look like in practice — is there an immediate deliverable, or is there a listening and discovery phase first?"</li>
+          <li>"What would make the difference between a good hire and an exceptional one for this role?"</li>
+        </ul>
+
+        <div class="hook-box">
+          <div class="hook-label">The closer — same as Round 1, still the right question</div>
+          <p>"What is the one thing that, if this role solved it in the first 6 months, would make the biggest difference to the team?"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 60-SECOND PITCH -->
+    <div class="card" id="pitch">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-badge badge-green">60s</div>
+          <div>
+            <div class="card-title">Why Should We Hire You? — Round 2 Version</div>
+            <div class="card-subtitle">60 seconds. Leads with leadership, not just measurement.</div>
+          </div>
+        </div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body">
+        <div class="callout callout-amber">
+          <strong>Practice with the timer above.</strong> Set 60 seconds. This answer cannot run over. If they ask in the last 3 minutes, they are wrapping up. Give them the clean version.
+        </div>
+
+        <p>"Three reasons.</p>
+
+        <p><strong>First, I build systems, not reports.</strong> At BT, I built a measurement architecture that three functions — Marketing, Finance, and Commercial — still use three years later. I did not build it by mandate. I built it by showing each function lead their most important number in a shared system and letting them pull the rest in. That is the approach I would use at Barclays.</p>
+
+        <p><strong>Second, I align people who do not naturally agree.</strong> At BT, I resolved seven definition mismatches across three functions before I wrote a single line of code. At Santander, I got Finance and Marketing to share a measurement language that changed how £30M was allocated. At Barclays, this role sits between Marketing, Decision Intelligence, Finance, and the CMO office. That is exactly the environment where that skill matters most.</p>
+
+        <p><strong>Third, I develop the people around me.</strong> The analyst who came to me frustrated that her data was being ignored — six months later, product directors were coming to her to validate their assumptions before budget meetings. That is the kind of team I build.</p>
+
+        <p>Barclays has the highest market share in UK retail banking, a new brand platform, and a 1.2 billion pound technology investment. What it needs is a measurement leader who can connect all of that into one unified system and bring the whole bank with them. That is what I do."</p>
+
+        <div class="callout callout-green">
+          <strong>Time it.</strong> This should land at 55 to 65 seconds when spoken at a normal pace. No more.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:40px;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:12px;text-align:center;">
+      <p style="font-size:13px;color:var(--muted);margin:0;">Round 2 prep deck — built 7 April 2026</p>
+      <p style="font-size:13px;color:var(--muted);margin:4px 0 0;">Research and prep by Jean Mundabi Fala · Private document</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Theme
+let darkMode = false;
+function toggleTheme() {
+  darkMode = !darkMode;
+  document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : '');
+  document.getElementById('themeBtn').textContent = darkMode ? 'Light' : 'Dark';
+  localStorage.setItem('barclays_r2_theme', darkMode ? 'dark' : '');
+}
+
+// Init theme
+if (localStorage.getItem('barclays_r2_theme') === 'dark') {
+  darkMode = true;
+  document.documentElement.setAttribute('data-theme', 'dark');
+  document.getElementById('themeBtn').textContent = 'Light';
+}
+
+// Cards
+function toggleCard(header) {
+  const card = header.closest('.card');
+  card.classList.toggle('open');
+  saveState();
+}
+
+function expandAll() {
+  document.querySelectorAll('.card').forEach(c => c.classList.add('open'));
+}
+
+function collapseAll() {
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('open'));
+}
+
+// Sidebar scroll spy
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Open the card
+    if (!el.classList.contains('open')) el.classList.add('open');
+    updateActiveNav(id);
+  }
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('mobile-open');
+  document.getElementById('overlay').classList.remove('active');
+}
+
+function updateActiveNav(id) {
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.classList.remove('active');
+    if (item.getAttribute('href') === '#' + id) item.classList.add('active');
+  });
+}
+
+// Scroll spy
+const observerOptions = { root: null, rootMargin: '-20% 0px -70% 0px', threshold: 0 };
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) updateActiveNav(entry.target.id);
+  });
+}, observerOptions);
+
+document.querySelectorAll('.card[id]').forEach(el => observer.observe(el));
+
+// Progress bar
+window.addEventListener('scroll', () => {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('progressFill').style.width = scrolled + '%';
+});
+
+// Timer
+let timerInterval = null;
+let timerSeconds = 0;
+let timerTarget = 0;
+let timerRunning = false;
+
+function setTimer(secs) {
+  resetTimer();
+  timerTarget = secs;
+  timerSeconds = secs;
+  updateTimerDisplay();
+  document.querySelectorAll('.timer-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function startTimer() {
+  if (timerRunning) {
+    clearInterval(timerInterval);
+    timerRunning = false;
+    document.getElementById('timerStartBtn').textContent = 'Start';
+    return;
+  }
+  if (timerSeconds <= 0) timerSeconds = timerTarget || 120;
+  timerRunning = true;
+  document.getElementById('timerStartBtn').textContent = 'Pause';
+  timerInterval = setInterval(() => {
+    timerSeconds--;
+    updateTimerDisplay();
+    if (timerSeconds <= 0) {
+      clearInterval(timerInterval);
+      timerRunning = false;
+      document.getElementById('timerStartBtn').textContent = 'Start';
+    }
+  }, 1000);
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  timerRunning = false;
+  timerSeconds = timerTarget;
+  document.getElementById('timerStartBtn').textContent = 'Start';
+  updateTimerDisplay();
+}
+
+function updateTimerDisplay() {
+  const el = document.getElementById('timerDisplay');
+  const secs = Math.abs(timerSeconds);
+  const m = Math.floor(secs / 60);
+  const s = secs % 60;
+  el.textContent = m + ':' + (s < 10 ? '0' + s : s);
+  el.className = 'timer-display';
+  if (timerSeconds <= 10 && timerSeconds > 0) el.classList.add('warn');
+  if (timerSeconds <= 0) el.classList.add('danger');
+}
+
+// Mobile sidebar
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('sidebar').classList.toggle('mobile-open');
+  document.getElementById('overlay').classList.toggle('active');
+});
+
+document.getElementById('overlay').addEventListener('click', () => {
+  document.getElementById('sidebar').classList.remove('mobile-open');
+  document.getElementById('overlay').classList.remove('active');
+});
+
+// Save/restore card state
+function saveState() {
+  const open = [];
+  document.querySelectorAll('.card.open[id]').forEach(c => open.push(c.id));
+  localStorage.setItem('barclays_r2_open', JSON.stringify(open));
+}
+
+function restoreState() {
+  const saved = localStorage.getItem('barclays_r2_open');
+  if (!saved) return;
+  try {
+    const open = JSON.parse(saved);
+    open.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('open');
+    });
+  } catch(e) {}
+}
+
+restoreState();
+</script>
+</body>
+</html>
